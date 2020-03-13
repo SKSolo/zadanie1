@@ -1,0 +1,37 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+
+
+int main(int argc, char** argv) {
+	
+   fstream plik1;  
+   string napis[100];
+   int licznik[100];
+   int i=0;
+   
+   plik1.open("c:\\jeden.txt", ios::in);
+   
+   if(plik1.good()) 
+      while(!plik1.eof())  
+       {
+        plik1>>napis[i]>>licznik[i];
+	    napis[i] = napis[i].erase(0,licznik[i]); //Usuwamy litery tyle ile Licznik[i] poprzez .erase 
+      	i++;
+       }
+       plik1.close();
+	  
+	    
+	     
+  	plik1.open("c:\\dwa.txt");
+	for(int j=0;j<i;j++){
+	//	napis -= 32;  <-- Zamiana na wieksze litery ale nie dziala ?
+		plik1<<napis[j]<<" "<<" "<<endl;
+	}
+ 	cout<<"tresc zostala zapisana w pliku dwa.txt";
+    plik1.close(); 
+
+	                      
+	return 0;
+}
